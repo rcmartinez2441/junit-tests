@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -51,4 +52,44 @@ public class StudentTest {
         assertEquals(70, fer.getGradeAverage(), 0);
     }
 
+   // TODO: test to make sure that updateGrade works -> use getGradeAverage() to do so.
+    //  getGradeAverage() should be what you would expect from updating the lowest grade
+    @Test
+    public void updateGrade_TakesInNewGrade_ExpectsNewGradeAverage(){
+        //Arrange
+        Student testStudent = new Student(1, "raul");
+        testStudent.addGrade(100);
+        testStudent.addGrade(100);
+        testStudent.addGrade(100);
+        testStudent.addGrade(100);
+        testStudent.addGrade(69);
+
+        //Act
+        testStudent.updateGrade(100);
+        double testAverage = testStudent.getGradeAverage();
+
+
+        //Assert
+        Assert.assertEquals(100, testAverage, 0);
+    }
+
+    // TODO: do the same for deleteGrade() -> make sure it is deleted by testing the size of the grades list and checking the new average
+
+    @Test
+    public void deleteGrade_TakesNoArguments_RemovesLowestGradeForHigherAverage () {
+        //Arrange
+        Student testStudent = new Student(1, "raul");
+        testStudent.addGrade(100);
+        testStudent.addGrade(100);
+        testStudent.addGrade(100);
+        testStudent.addGrade(100);
+        testStudent.addGrade(69);
+
+        //Act
+        testStudent.deleteGrade();
+        double testAverage = testStudent.getGradeAverage();
+
+        //Assert
+        Assert.assertEquals(100, testAverage, 0);
+    }
 }
